@@ -1,5 +1,5 @@
 # Use ubuntu:20.04 as base for builder stage image
-FROM ubuntu:20.04 as builder
+FROM ubuntu:questing-20251007 as builder
 
 # Set Electroneum branch/tag to be used for electroneumd compilation
 
@@ -65,7 +65,7 @@ RUN cmake .. && make -j"$(cat /nproc)"
 RUN zip /lib.zip $(ldd etnblocks | grep -E '/[^\ ]*' -o)
 
 # Use ubuntu:20.04 as base for final image
-FROM ubuntu:20.04
+FROM ubuntu:questing-20251007
 
 # Added DEBIAN_FRONTEND=noninteractive to workaround tzdata prompt on installation
 ENV DEBIAN_FRONTEND="noninteractive"
